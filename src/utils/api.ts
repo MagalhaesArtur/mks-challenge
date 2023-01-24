@@ -8,5 +8,5 @@ export const getProducts = async () => {
   const response = await api.get(
     "products?page=1&rows=8&sortBy=id&orderBy=DESC"
   );
-  console.log(response);
+  return response.data.products;
 };
