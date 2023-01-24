@@ -1,10 +1,12 @@
 import { Button } from "@mui/material";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
-import { getProducts } from "../utils/api";
-import { useSelector } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 import { RootState } from "../store";
+import { change } from "../features/isSidebarOpen/sideBar-slice";
 
 function NavBar() {
+  const dispatch = useDispatch();
+
   const counter = useSelector((state: RootState) => {
     return state.totalItemsCounter.value;
   });
@@ -17,7 +19,7 @@ function NavBar() {
       </div>
       <Button
         onClick={() => {
-          getProducts();
+          dispatch(change());
         }}
         className="flex gap-4 text-xl "
         style={{

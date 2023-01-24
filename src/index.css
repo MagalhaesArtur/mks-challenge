@@ -17,8 +17,29 @@ html {
 #sideBar {
   position: absolute;
   right: 0;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   z-index: 10;
   height: 122vh;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #d0d3d4;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #0f52ba;
+  border-radius: 20px;
+  border: 3px solid #d0d3d4;
 }

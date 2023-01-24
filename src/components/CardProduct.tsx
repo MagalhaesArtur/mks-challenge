@@ -4,15 +4,24 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ProductSlice } from "../features/products/products-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../features/itemsOnSupermarketCart/counter-slice";
+import { setProductOnCart } from "../features/itemsOnSupermarketCart/products-slice";
+import { RootState } from "../store";
 
 function CardProduct(product: { data: ProductSlice; loading: boolean }) {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = (product: ProductSlice) => {
     dispatch(increment());
+    dispatch(setProductOnCart(product));
   };
+
+  const products = useSelector((state: RootState) => {
+    return state.allProductsInCart.products;
+  });
+
+  console.log(products);
 
   return (
     <SkeletonTheme baseColor="#cec1c1" highlightColor="#fff">
@@ -38,7 +47,9 @@ function CardProduct(product: { data: ProductSlice; loading: boolean }) {
             </div>
           </div>
           <Button
-            onClick={handleClick}
+            onClick={() => {
+              handleClick(product.data);
+            }}
             className=" "
             style={{
               borderBottomLeftRadius: 8,
