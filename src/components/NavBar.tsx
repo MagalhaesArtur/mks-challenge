@@ -10,7 +10,7 @@ function NavBar() {
   });
 
   return (
-    <nav className="bg-azulzin-500 w-full h-[101px]  text-white  flex justify-around  items-center font-montserrat">
+    <nav className="bg-azulzin-500 w-full relative h-[101px]  text-white  flex justify-around  items-center font-montserrat">
       <div className="flex gap-3 items-end ">
         <h1 className="text-[30px] mb-0 font-semibold">MKS</h1>
         <h2 className="text-xl mb-1 font-light ">Sistemas</h2>
@@ -19,9 +19,9 @@ function NavBar() {
         onClick={() => {
           getProducts();
         }}
-        className="flex gap-4 !text-xl !font-bold"
+        className="flex gap-4 text-xl "
         style={{
-          borderRadius: 35,
+          borderRadius: 20,
           backgroundColor: "#fff",
           padding: "18px 36px",
           color: "#000",
@@ -31,7 +31,7 @@ function NavBar() {
         variant="contained"
       >
         <LocalGroceryStoreIcon />
-        <h3>{counter}</h3>
+        <h3 className="font-bold text-xl">{counter}</h3>
       </Button>
     </nav>
   );
