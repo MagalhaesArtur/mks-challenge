@@ -51,7 +51,7 @@ export default function RealSideBar() {
 
   const list = (anchor: Anchor) => (
     <aside
-      className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between w-[500px]  h-screen ${
+      className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between lg:w-[500px] md:w[300px]  h-screen ${
         allProductsInCart.length >= 6 ? "overflow-y-scroll" : "overflow-auto"
       } `}
     >
