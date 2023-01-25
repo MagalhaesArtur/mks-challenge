@@ -1,7 +1,7 @@
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import InCartProductCard from "../InCartProductCard";
+import CardProductInCart from "../CardProductInCart";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
@@ -69,7 +69,7 @@ export default function RealSideBar() {
         </header>
         <div className={`flex flex-col  items-center justify-center`}>
           {allProductsInCart.map((product) => (
-            <InCartProductCard data={product} />
+            <CardProductInCart data={product} />
           ))}
         </div>
       </div>

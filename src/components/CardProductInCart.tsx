@@ -10,7 +10,7 @@ import {
   decrementCounter,
 } from "../features/itemsOnSupermarketCart/counter-slice";
 
-function InCartProductCard(product: { data: ProductSlice }) {
+function CardProductInCart(product: { data: ProductSlice }) {
   const dispatch = useDispatch();
 
   return (
@@ -70,4 +70,4 @@ function InCartProductCard(product: { data: ProductSlice }) {
   );
 }
 
-export default InCartProductCard;
+export default CardProductInCart;
