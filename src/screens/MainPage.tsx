@@ -17,7 +17,7 @@ function MainPage() {
   }, []);
   return (
     <>
-      <main className="w-full relative items-center justify-center flex flex-col  h-screen">
+      <main className="w-full relative overflow-x-hidden  items-center justify-center flex flex-col  min-h-screen">
         <CardContainer />
         <Footer />
       </main>

@@ -28,7 +28,8 @@ function CardContainer() {
       onClick={() => {
         dispatch(changeToFalse());
       }}
-      className="w-[70%] mb-10 min-h-[600px] grid grid-rows-2 grid-flow-col gap-4"
+      id="gridContainer"
+      className="w-[70%] mb-20 mt-20 min-h-[600px] "
     >
       {products.map((product) => (
         <CardProduct key={product.id} loading={loading} data={product} />
