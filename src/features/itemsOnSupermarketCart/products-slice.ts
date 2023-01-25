@@ -52,6 +52,9 @@ export const productsInCartSlice = createSlice({
       for (const product of state.products) {
         if (product.id == action.payload.id) {
           product.counter -= 1;
+          if (product.counter == 0) {
+            state.products.splice(state.products.indexOf(product), 1);
+          }
         }
       }
     },

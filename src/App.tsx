@@ -3,9 +3,8 @@ import MainPage from "./screens/MainPage";
 
 function App() {
   return (
-    <div className="">
+    <div>
       <NavBar />
-
       <MainPage />
     </div>
   );

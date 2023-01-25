@@ -28,10 +28,6 @@ export default function RealSideBar() {
     setTotalPrice(total);
   }, [allProductsInCart]);
 
-  const productsInCart = useSelector((state: RootState) => {
-    return state.allProductsInCart.products;
-  });
-
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -55,7 +51,9 @@ export default function RealSideBar() {
 
   const list = (anchor: Anchor) => (
     <aside
-      className={`bg-azulzin-500 !font-montserrat overflow-y-scroll flex flex-col justify-between w-[500px]  h-screen  `}
+      className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between w-[500px]  h-screen ${
+        allProductsInCart.length >= 6 ? "overflow-y-scroll" : "overflow-auto"
+      } `}
     >
       <div className="px-5 py-7 ">
         <header className="flex items-center justify-between">
@@ -70,7 +68,7 @@ export default function RealSideBar() {
           </button>
         </header>
         <div className={`flex flex-col  items-center justify-center`}>
-          {productsInCart.map((product) => (
+          {allProductsInCart.map((product) => (
             <InCartProductCard data={product} />
           ))}
         </div>
@@ -100,7 +98,6 @@ export default function RealSideBar() {
                   backgroundColor: "#fff",
                   padding: "18px 36px",
                   color: "#000",
-
                   fontSize: "18px",
                 }}
                 variant="contained"

@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-
+import { SkeletonTheme } from "react-loading-skeleton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
@@ -9,6 +8,7 @@ import {
   ProductSlice,
   setProductOnCart,
 } from "../features/itemsOnSupermarketCart/products-slice";
+import SkeletonModel from "./SkeletonModel";
 
 function CardProduct(product: { data: ProductSlice; loading: boolean }) {
   const dispatch = useDispatch();
@@ -67,22 +67,7 @@ function CardProduct(product: { data: ProductSlice; loading: boolean }) {
           </Button>
         </div>
       ) : (
-        <div className="w-64 h-96  gap-2 bg-white rounded-lg !font-montserrat shadow-shadowzin items-center justify-between flex flex-col">
-          <div className=" gap-2  rounded-lg py-3  font-montserrat px-6 items-center justify-center flex flex-col">
-            <Skeleton height={125} width={125} circle={true} />
-            <div className="flex w-full mt-4 mb-2 items-center justify-between ">
-              <div className="flex flex-col mr-7">
-                <Skeleton width={100} count={1} />
-                <Skeleton width={100} count={1} />
-              </div>
-              <Skeleton width={60} height={40} count={1} />
-            </div>
-            <div className="flex flex-col gap-3">
-              <Skeleton width={200} count={1} />
-              <Skeleton width={200} count={1} />
-            </div>
-          </div>
-        </div>
+        <SkeletonModel />
       )}
     </SkeletonTheme>
   );
