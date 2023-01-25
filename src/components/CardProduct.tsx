@@ -12,6 +12,7 @@ import {
   setProductOnCart,
 } from "../features/itemsOnSupermarketCart/products-slice";
 import { useState } from "react";
+import SnackBar from "./SnackBar";
 
 export default function CardProduct(product: {
   data: ProductSlice;
@@ -19,6 +20,7 @@ export default function CardProduct(product: {
 }) {
   const dispatch = useDispatch();
 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleClick = (product: ProductSlice) => {
@@ -33,6 +35,7 @@ export default function CardProduct(product: {
           id="loadingAux"
           className="w-64 min-h-72  gap-2 bg-white rounded-lg !font-montserrat shadow-shadowzin items-center justify-between flex flex-col"
         >
+          <SnackBar open={openSnackbar} setOpen={setOpenSnackbar} />
           <div className=" gap-2  rounded-lg py-3  font-montserrat px-6 items-center justify-center flex flex-col">
             {
               <img
@@ -75,6 +78,7 @@ export default function CardProduct(product: {
             <Button
               data-testid="addItemToCart"
               onClick={() => {
+                setOpenSnackbar(true);
                 setLoading(true);
                 handleClick(product.data);
                 setTimeout(() => {

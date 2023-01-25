@@ -1,5 +1,5 @@
 import { RootState } from "../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
 import { useEffect, useState } from "react";
 import { ProductSlice } from "../features/itemsOnSupermarketCart/products-slice";
