@@ -5,7 +5,7 @@ export interface CounterSlice {
 }
 
 const initialState = {
-  value: 0,
+  value: Number(localStorage.getItem("counter")) || 0,
 };
 
 export const counterSlice = createSlice({
@@ -13,10 +13,22 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     incrementCounter: (state) => {
-      state.value += 1;
+      if (localStorage.getItem("counter")) {
+        const value: any = localStorage.getItem("counter");
+        state.value = Number(value) + 1;
+      } else {
+        state.value += 1;
+      }
+      localStorage.setItem("counter", JSON.stringify(state.value));
     },
     decrementCounter: (state) => {
-      state.value -= 1;
+      if (localStorage.getItem("counter")) {
+        const value: any = localStorage.getItem("counter");
+        state.value = Number(value) - 1;
+      } else {
+        state.value -= 1;
+      }
+      localStorage.setItem("counter", JSON.stringify(state.value));
     },
   },
 });

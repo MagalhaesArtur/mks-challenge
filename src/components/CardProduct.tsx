@@ -4,13 +4,16 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
 import { incrementCounter } from "../features/itemsOnSupermarketCart/counter-slice";
+import SkeletonModel from "./SkeletonModel";
 import {
   ProductSlice,
   setProductOnCart,
 } from "../features/itemsOnSupermarketCart/products-slice";
-import SkeletonModel from "./SkeletonModel";
 
-function CardProduct(product: { data: ProductSlice; loading: boolean }) {
+export default function CardProduct(product: {
+  data: ProductSlice;
+  loading?: boolean;
+}) {
   const dispatch = useDispatch();
 
   const handleClick = (product: ProductSlice) => {
@@ -42,6 +45,7 @@ function CardProduct(product: { data: ProductSlice; loading: boolean }) {
             </div>
           </div>
           <Button
+            data-testid="addItemToCart"
             onClick={() => {
               handleClick(product.data);
             }}
@@ -72,5 +76,3 @@ function CardProduct(product: { data: ProductSlice; loading: boolean }) {
     </SkeletonTheme>
   );
 }
-
-export default CardProduct;

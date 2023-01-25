@@ -51,6 +51,7 @@ export default function RealSideBar() {
 
   const list = (anchor: Anchor) => (
     <aside
+      data-testid="sideBar"
       className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between lg:w-[500px] md:w[300px]  h-screen ${
         allProductsInCart.length >= 6 ? "overflow-y-scroll" : "overflow-auto"
       } `}
@@ -92,6 +93,7 @@ export default function RealSideBar() {
           <Button onClick={toggleDrawer(anchor, true)}>
             {
               <Button
+                data-testid="sideBarButton"
                 className="flex gap-4 text-xl "
                 style={{
                   borderRadius: 20,

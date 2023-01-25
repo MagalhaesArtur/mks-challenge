@@ -16,8 +16,14 @@ interface InitialState {
   products: Array<ProductSlice>;
 }
 
+const generateInitialState = () => {
+  const prodAux: any = localStorage.getItem("productsInCart");
+  const products: Array<ProductSlice> = JSON.parse(prodAux);
+  return products;
+};
+
 const initialState: InitialState = {
-  products: [],
+  products: generateInitialState() || [],
 };
 
 export const productsInCartSlice = createSlice({
@@ -36,9 +42,16 @@ export const productsInCartSlice = createSlice({
             product.counter += 1;
           }
         }
-        !inArray ? state.products.push(action.payload) : null;
+        !inArray
+          ? state.products.push(action.payload) &&
+            localStorage.setItem(
+              "productsInCart",
+              JSON.stringify(state.products)
+            )
+          : null;
       } else {
         state.products.push(action.payload);
+        localStorage.setItem("productsInCart", JSON.stringify(state.products));
       }
     },
     increment: (state: InitialState, action: PayloadAction<ProductSlice>) => {
@@ -47,6 +60,7 @@ export const productsInCartSlice = createSlice({
           product.counter += 1;
         }
       }
+      localStorage.setItem("productsInCart", JSON.stringify(state.products));
     },
     decrement: (state: InitialState, action: PayloadAction<ProductSlice>) => {
       for (const product of state.products) {
@@ -57,6 +71,7 @@ export const productsInCartSlice = createSlice({
           }
         }
       }
+      localStorage.setItem("productsInCart", JSON.stringify(state.products));
     },
   },
 });
