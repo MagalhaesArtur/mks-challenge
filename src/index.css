@@ -53,3 +53,25 @@ body::-webkit-scrollbar {
     flex-direction: column;
   }
 }
+
+@media (max-width: 500px) {
+  #sideBar {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 768px) {
+  #sideBar {
+    width: 60vw;
+  }
+}
+
+@media (min-width: 768px) {
+  #sideBar {
+    width: 500px;
+  }
+}
+
+#loadingAux span {
+  color: white !important;
+}

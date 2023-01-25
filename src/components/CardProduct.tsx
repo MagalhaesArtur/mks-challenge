@@ -3,18 +3,23 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch } from "react-redux";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { incrementCounter } from "../features/itemsOnSupermarketCart/counter-slice";
 import SkeletonModel from "./SkeletonModel";
+
 import {
   ProductSlice,
   setProductOnCart,
 } from "../features/itemsOnSupermarketCart/products-slice";
+import { useState } from "react";
 
 export default function CardProduct(product: {
   data: ProductSlice;
   loading?: boolean;
 }) {
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
 
   const handleClick = (product: ProductSlice) => {
     dispatch(incrementCounter());
@@ -24,7 +29,10 @@ export default function CardProduct(product: {
   return (
     <SkeletonTheme baseColor="#cec1c1" highlightColor="#fff">
       {!product.loading ? (
-        <div className="w-64 min-h-72  gap-2 bg-white rounded-lg !font-montserrat shadow-shadowzin items-center justify-between flex flex-col">
+        <div
+          id="loadingAux"
+          className="w-64 min-h-72  gap-2 bg-white rounded-lg !font-montserrat shadow-shadowzin items-center justify-between flex flex-col"
+        >
           <div className=" gap-2  rounded-lg py-3  font-montserrat px-6 items-center justify-center flex flex-col">
             {
               <img
@@ -44,31 +52,56 @@ export default function CardProduct(product: {
               <p className="font-light text-sm">{product.data.description}</p>
             </div>
           </div>
-          <Button
-            data-testid="addItemToCart"
-            onClick={() => {
-              handleClick(product.data);
-            }}
-            className=" "
-            style={{
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-              borderTopLeftRadius: 0,
-              borderTopRightRadius: 0,
-              width: "100%",
-              height: 31,
-              backgroundColor: "#0F52BA",
-              padding: "18px 36px",
-              color: "#fff",
-              fontSize: "18px",
-            }}
-            variant="contained"
-          >
-            <div className="flex font-semibold text-sm items-center gap-4 justify-center">
-              <LocalMallOutlinedIcon className="text-white" />
-              <h2>Comprar</h2>
-            </div>
-          </Button>
+
+          {loading ? (
+            <LoadingButton
+              style={{
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                width: "100%",
+                height: 30,
+                backgroundColor: "#0F52BA",
+                padding: "18px 36px",
+                color: "#fff",
+                fontSize: "18px",
+              }}
+              loading
+              color="success"
+              variant="outlined"
+            ></LoadingButton>
+          ) : (
+            <Button
+              data-testid="addItemToCart"
+              onClick={() => {
+                setLoading(true);
+                handleClick(product.data);
+                setTimeout(() => {
+                  setLoading(false);
+                }, 1000);
+              }}
+              className=" "
+              style={{
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+                width: "100%",
+                height: 31,
+                backgroundColor: "#0F52BA",
+                padding: "18px 36px",
+                color: "#fff",
+                fontSize: "18px",
+              }}
+              variant="contained"
+            >
+              <div className="flex font-semibold text-sm items-center gap-4 justify-center">
+                <LocalMallOutlinedIcon className="text-white" />
+                <h2>Comprar</h2>
+              </div>
+            </Button>
+          )}
         </div>
       ) : (
         <SkeletonModel />

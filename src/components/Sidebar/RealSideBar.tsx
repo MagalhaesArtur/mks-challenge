@@ -52,7 +52,8 @@ export default function RealSideBar() {
   const list = (anchor: Anchor) => (
     <aside
       data-testid="sideBar"
-      className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between lg:w-[500px] md:w[300px]  h-screen ${
+      id="sideBar"
+      className={`bg-azulzin-500 !font-montserrat  flex flex-col justify-between   h-screen ${
         allProductsInCart.length >= 6 ? "overflow-y-scroll" : "overflow-auto"
       } `}
     >
@@ -90,7 +91,12 @@ export default function RealSideBar() {
     <div>
       {(["right"] as const).map((anchor) => (
         <Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>
+          <Button
+            style={{
+              borderRadius: 20,
+            }}
+            onClick={toggleDrawer(anchor, true)}
+          >
             {
               <Button
                 data-testid="sideBarButton"
