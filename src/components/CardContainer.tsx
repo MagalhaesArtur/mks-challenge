@@ -1,9 +1,9 @@
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductSlice } from "../features/products/products-slice";
 import CardProduct from "./CardProduct";
 import { useEffect, useState } from "react";
 import { changeToFalse } from "../features/isSidebarOpen/sideBar-slice";
+import { ProductSlice } from "../features/itemsOnSupermarketCart/products-slice";
 
 function CardContainer() {
   const dispatch = useDispatch();

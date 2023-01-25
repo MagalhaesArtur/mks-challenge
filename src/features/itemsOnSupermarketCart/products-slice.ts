@@ -9,10 +9,11 @@ export interface ProductSlice {
   photo: string;
   price: string;
   updatedAt: string;
+  counter: number;
 }
 
 interface InitialState {
-  products: Array<any>;
+  products: Array<ProductSlice>;
 }
 
 const initialState: InitialState = {
@@ -27,10 +28,36 @@ export const productsInCartSlice = createSlice({
       state: InitialState,
       action: PayloadAction<ProductSlice>
     ) => {
-      state.products.push(action.payload);
+      if (state.products.length != 0) {
+        let inArray = false;
+        for (const product of state.products) {
+          if (product.id == action.payload.id) {
+            inArray = true;
+            product.counter += 1;
+          }
+        }
+        !inArray ? state.products.push(action.payload) : null;
+      } else {
+        state.products.push(action.payload);
+      }
+    },
+    increment: (state: InitialState, action: PayloadAction<ProductSlice>) => {
+      for (const product of state.products) {
+        if (product.id == action.payload.id) {
+          product.counter += 1;
+        }
+      }
+    },
+    decrement: (state: InitialState, action: PayloadAction<ProductSlice>) => {
+      for (const product of state.products) {
+        if (product.id == action.payload.id) {
+          product.counter -= 1;
+        }
+      }
     },
   },
 });
 
-export const { setProductOnCart } = productsInCartSlice.actions;
+export const { setProductOnCart, decrement, increment } =
+  productsInCartSlice.actions;
 export const allProductsInCart = productsInCartSlice.reducer;
