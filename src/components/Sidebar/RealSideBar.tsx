@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { Fragment, useEffect, useState } from "react";
+import { ShoppingBagOpen } from "phosphor-react";
 
 type Anchor = "right";
 
@@ -74,9 +75,16 @@ export default function RealSideBar() {
           </button>
         </header>
         <div className={`flex flex-col  items-center justify-center`}>
-          {allProductsInCart.map((product) => (
-            <CardProductInCart key={product.id} data={product} />
-          ))}
+          {allProductsInCart.length > 0 ? (
+            allProductsInCart.map((product) => (
+              <CardProductInCart key={product.id} data={product} />
+            ))
+          ) : (
+            <div className="text-slate-300 font-bold text-xl flex flex-col mt-8 justify-center items-center">
+              <h2>Sem itens no carrinho!</h2>
+              <ShoppingBagOpen size={60} />
+            </div>
+          )}
         </div>
       </div>
       <div className="text-3xl w-full flex flex-col gap-4  items-center text-white font-bold">

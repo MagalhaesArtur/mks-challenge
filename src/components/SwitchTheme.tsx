@@ -5,11 +5,6 @@ import { switchMode } from "../features/SwitchTheme/switch-theme-slice";
 import { RootState } from "../store";
 
 export function SwitchTheme() {
-  const isDarkTheme = useSelector((state: RootState) => {
-    return state.SwitchTheme.isDarkMode;
-  });
-  console.log(isDarkTheme);
-
   const dispatch = useDispatch();
 
   return (

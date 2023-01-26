@@ -90,10 +90,10 @@ export default function CardProduct(product: {
             <Button
               data-testid="addItemToCart"
               onClick={() => {
-                setOpenSnackbar(true);
                 setLoading(true);
                 handleClick(product.data);
                 setTimeout(() => {
+                  setOpenSnackbar(true);
                   setLoading(false);
                 }, 1000);
               }}
