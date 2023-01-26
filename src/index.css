@@ -56,13 +56,13 @@ body::-webkit-scrollbar {
 
 @media (max-width: 500px) {
   #sideBar {
-    width: 100vw;
+    width: 100vw !important;
   }
 }
 
 @media (max-width: 768px) {
   #sideBar {
-    width: 60vw;
+    width: 80vw;
   }
 }
 
@@ -75,3 +75,9 @@ body::-webkit-scrollbar {
 #loadingAux span {
   color: white !important;
 }
+
+/* @media (max-width: 650px) {
+  #CardProductInCart {
+    flex-direction: column;
+  }
+} */

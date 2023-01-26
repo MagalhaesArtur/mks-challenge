@@ -15,6 +15,7 @@ function CardProductInCart(product: { data: ProductSlice }) {
 
   return (
     <div
+      id="CardProductInCart"
       className={`w-[90%]  px-5 py-2 relative rounded-lg gap-4 mt-8 flex justify-between items-center bg-white h-24 `}
     >
       <button
