@@ -1,7 +1,7 @@
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import CardProductInCart from "../CardProductInCart";
+import CardProductInCart from "../CardComponents/CardProductInCart";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
@@ -16,6 +16,10 @@ export default function RealSideBar() {
 
   const allProductsInCart = useSelector((state: RootState) => {
     return state.allProductsInCart.products;
+  });
+
+  const isDarkTheme = useSelector((state: RootState) => {
+    return state.SwitchTheme.isDarkMode;
   });
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -71,7 +75,7 @@ export default function RealSideBar() {
         </header>
         <div className={`flex flex-col  items-center justify-center`}>
           {allProductsInCart.map((product) => (
-            <CardProductInCart data={product} />
+            <CardProductInCart key={product.id} data={product} />
           ))}
         </div>
       </div>
@@ -91,30 +95,33 @@ export default function RealSideBar() {
     <div>
       {(["right"] as const).map((anchor) => (
         <Fragment key={anchor}>
-          <Button
-            style={{
-              borderRadius: 20,
-            }}
-            onClick={toggleDrawer(anchor, true)}
-          >
+          <div onClick={toggleDrawer(anchor, true)}>
             {
               <Button
                 data-testid="sideBarButton"
                 className="flex gap-4 text-xl "
                 style={{
                   borderRadius: 20,
-                  backgroundColor: "#fff",
+                  backgroundColor: `${isDarkTheme ? "#1a222d" : "#fff"}`,
                   padding: "18px 36px",
                   color: "#000",
                   fontSize: "18px",
                 }}
                 variant="contained"
               >
-                <LocalGroceryStoreIcon />
-                <h3 className="font-bold text-xl">{counter}</h3>
+                <LocalGroceryStoreIcon
+                  color={`${isDarkTheme ? "primary" : "inherit"}`}
+                />
+                <h3
+                  className={`${
+                    isDarkTheme ? "text-white" : "text-inherit"
+                  } font-bold text-xl`}
+                >
+                  {counter}
+                </h3>
               </Button>
             }
-          </Button>
+          </div>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

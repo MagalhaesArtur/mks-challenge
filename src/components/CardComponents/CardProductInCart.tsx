@@ -4,11 +4,11 @@ import {
   decrement,
   increment,
   ProductSlice,
-} from "../features/itemsOnSupermarketCart/products-slice";
+} from "../../features/itemsOnSupermarketCart/products-slice";
 import {
   incrementCounter,
   decrementCounter,
-} from "../features/itemsOnSupermarketCart/counter-slice";
+} from "../../features/itemsOnSupermarketCart/counter-slice";
 
 function CardProductInCart(product: { data: ProductSlice }) {
   const dispatch = useDispatch();

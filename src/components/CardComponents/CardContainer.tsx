@@ -1,8 +1,8 @@
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
 import { useEffect, useState } from "react";
-import { ProductSlice } from "../features/itemsOnSupermarketCart/products-slice";
+import { ProductSlice } from "../../features/itemsOnSupermarketCart/products-slice";
 
 function CardContainer() {
   const [loading, setLoading] = useState(false);

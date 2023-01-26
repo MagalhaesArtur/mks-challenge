@@ -1,10 +1,8 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import UserEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { store } from "../store";
-import RealSideBar from "../components/Sidebar/RealSideBar";
-import CardProduct from "../components/CardProduct";
+import CardProduct from "../components/CardComponents/CardProduct";
 
 const product = {
   id: 8,

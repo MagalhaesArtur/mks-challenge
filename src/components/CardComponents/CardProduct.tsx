@@ -2,23 +2,27 @@ import { Button } from "@mui/material";
 import { SkeletonTheme } from "react-loading-skeleton";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { incrementCounter } from "../features/itemsOnSupermarketCart/counter-slice";
-import SkeletonModel from "./SkeletonModel";
-
+import { incrementCounter } from "../../features/itemsOnSupermarketCart/counter-slice";
+import SkeletonModel from "../SkeletonModel";
 import {
   ProductSlice,
   setProductOnCart,
-} from "../features/itemsOnSupermarketCart/products-slice";
+} from "../../features/itemsOnSupermarketCart/products-slice";
 import { useState } from "react";
-import SnackBar from "./SnackBar";
+import SnackBar from "../SnackBar";
+import { RootState } from "../../store";
 
 export default function CardProduct(product: {
   data: ProductSlice;
   loading?: boolean;
 }) {
   const dispatch = useDispatch();
+
+  const isDarkTheme = useSelector((state: RootState) => {
+    return state.SwitchTheme.isDarkMode;
+  });
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -33,13 +37,21 @@ export default function CardProduct(product: {
       {!product.loading ? (
         <div
           id="loadingAux"
-          className="w-64 min-h-72  gap-2 bg-white rounded-lg !font-montserrat shadow-shadowzin items-center justify-between flex flex-col"
+          className={`w-64 min-h-72  gap-2 ${
+            isDarkTheme
+              ? "bg-slate-900 shadow-shadowzin2"
+              : "bg-white shadow-shadowzin"
+          }  transition-all rounded-lg !font-montserrat   items-center justify-between flex flex-col`}
         >
           <SnackBar open={openSnackbar} setOpen={setOpenSnackbar} />
-          <div className=" gap-2  rounded-lg py-3  font-montserrat px-6 items-center justify-center flex flex-col">
+          <div
+            className={`${
+              isDarkTheme ? "text-white" : "text-black"
+            }  gap-2  rounded-lg py-3 transition-all  font-montserrat px-6 items-center justify-center flex flex-col`}
+          >
             {
               <img
-                className="w-40"
+                className="w-40 rounded-xl"
                 src={product.data.photo}
                 alt={product.data.name}
               />
